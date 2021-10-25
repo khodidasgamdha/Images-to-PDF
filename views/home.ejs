@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <title>Home</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">
+            <div>
+                <a href="/logout">Logout</a>
+                <a href="/add-image">Add Image</a>
+            </div>
+            <div>
+                Choose your Images to create PDF / delete it
+            </div>
+            <div>
+                <button type="submit" form="imageForm" name="action" value="createPdf">Download As PDF</button>
+                <button type="submit" form="imageForm" name="action" value="deleteImages">Delete Images</button>
+            </div>
+        </div>
+
+        <form id="imageForm" class="container" method="POST" action="/selected_images">
+            <% for(var i=0; i < Object.keys(images).length; i++) { %>
+                <label class="option_item">
+                    <input type="checkbox" name="images" class="checkbox" value="<%= images[i]._id %>">
+                    <div style="background-image: url('data:image/png;base64,<%= images[i].image %>')" class="option_inner linkedin">
+                        <div class="tickmark"></div>
+                        <div class="icon"><i class="fab fa-linkedin-in"></i></div>
+                    </div>
+                    <h5>Name: <%= images[i].image_name %></h5>
+                    <h5>Type: <%= images[i].image_type %></h5>
+                </label>
+            <% } %>
+        </form>
+
+    </div>
+</body>
+
+</html>
