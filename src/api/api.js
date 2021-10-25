@@ -85,8 +85,9 @@ api.post("/selected_images", auth, async (req, res) => {
             .fontSize(18)
             .fillColor('black')
             .text('Mr. Ravi Gajeta', { align: 'left', lineBreak : false }, 20, 20)
+            .fillColor('blue')
             .fontSize(12)
-            .text('+91 98765 43210', { align: 'right' });
+            .text('+91 98765 43210', { align: 'right', link: 'tel: 9876543210' });
             pdfDoc.moveDown(3)
             
             images.forEach((img, i) => {
