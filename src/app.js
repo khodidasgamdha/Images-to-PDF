@@ -10,6 +10,8 @@ require("./db/connection"); // DB connection
 
 app.set("view engine", "ejs"); // template
 
+const port = process.env.PORT || 3000;
+
 // work as middleware
 app.use(express.json()); // convert Incoming JSON to Object
 app.use(cookieParser());
@@ -23,4 +25,6 @@ app.get('*', (req, res) => {
     res.render("404");
 })
 
-app.listen(3000);
+app.listen(port, () => {
+    console.log(`🚀  Server ready at http://127.0.0.1:${port}`);
+});
