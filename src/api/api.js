@@ -90,10 +90,8 @@ api.post("/selected_images", auth, async (req, res) => {
             pdfDoc.moveDown(3)
             
             images.forEach((img, i) => {
-                const imgHeight = 200
-                if ( (imgHeight + pdfDoc.y + pdfDoc.currentLineHeight(true) + pdfDoc.page.margins.top + pdfDoc.page.margins.bottom) > pdfDoc.page.maxY()) {
-                    pdfDoc.addPage();
-                }
+                if (i%2 == 0 && i != 0) pdfDoc.addPage();
+                
                 pdfDoc
                 .font('Times-Roman')
                 .fontSize(15)
@@ -103,7 +101,7 @@ api.post("/selected_images", auth, async (req, res) => {
                 pdfDoc.moveDown(5)
             })
             
-            await pdfDoc.end();
+            pdfDoc.end();
             pdfDoc.pipe(res);
         } catch (error) {
             res.status(400).send({
